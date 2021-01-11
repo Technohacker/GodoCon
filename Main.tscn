@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GodoConTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://OpenSans-Light.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 1 )
+text = "GodoCon"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 45.0
+margin_right = 600.0
+margin_bottom = 800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 592.0
+margin_bottom = 747.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 584.0
+margin_bottom = 30.0
+
+[node name="Add" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 41.0
+margin_bottom = 30.0
+size_flags_horizontal = 0
+text = "Add"
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 584.0
+margin_bottom = 739.0
+size_flags_vertical = 3
+
+[node name="FileDialog" type="FileDialog" parent="."]
+visible = true
+margin_left = 149.0
+margin_top = 320.0
+margin_right = 450.0
+margin_bottom = 479.0
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.pck" )
+show_hidden_files = true
+current_dir = "/home/user1/Documents/Code/Personal/GodotCon"
+current_path = "/home/user1/Documents/Code/Personal/GodotCon/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Add" to="." method="_on_Add_pressed"]
+[connection signal="item_activated" from="VBoxContainer/MarginContainer/VBoxContainer/ItemList" to="." method="_on_ItemList_item_activated"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
